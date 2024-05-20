@@ -1,0 +1,9 @@
+<% if @result == 1 %>
+    <p>Sorry but <%=params[:answer]%> can't be built out of <%=params[:letters].chars%></p>
+<% elsif @result == 2 %>
+    <p>Sorry but <%=params[:answer]%> does not seems to be a valid English word...</p>
+<% else %>
+    <p>Congratulations <%=params[:answer]%> is a valid English word:</p>
+<% end %>
+
+<%= link_to "Play again", new_path %>

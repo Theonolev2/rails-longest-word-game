@@ -1,0 +1,22 @@
+<h1>New Game</h1>
+<div class="letters">
+  <% @letters.each do |letter| %>
+  <div class="bg-primary m-2 p-2 text-white"><%= letter %></div>
+  <% end %>
+</div>
+
+<div class="card p-2 mx-5" style="width: 18rem;">
+  <%
+    str_letters = @letters.join()
+  %>
+  <form action="score" data-turbo="false" method="POST">
+    <div class="form-group">
+      <label for="answer">Your answer:</label>
+      <input type="text" class="form-control" name="answer">
+      <input type="hidden" class="form-control" name="letters" value=<%=str_letters%>>
+      <input type="hidden" class="form-control" name="score" value=<%=@score%>>
+    </div>
+    <button type="submit" class="btn btn-primary">Ask!</button>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  </form>
+</div>
