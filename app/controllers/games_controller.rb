@@ -8,6 +8,7 @@ class GamesController < ApplicationController
   end
 
   def score
+    session[:score] = session[:score] || 0
     letters = params[:letters].chars
     check1 = params[:answer].chars.all? { |letter| letters.include?(letter.upcase) }
     check2 = false
@@ -24,5 +25,7 @@ class GamesController < ApplicationController
     else
       @result = 1
     end
+    @totalscore = session[:score] + params[:answer].length
+    session[:score] += params[:answer].length
   end
 end
